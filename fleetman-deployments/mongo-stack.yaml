@@ -7,24 +7,24 @@ spec:
   selector:
     matchLabels:
       app: mongodb
-  replicas: 1
+  replicas: 2
   template: # template for the pods
     metadata:
       labels:
         app: mongodb
     spec:
       containers:
-      - name: mongodb
-        image: mongo:3.6.5-jessie
-        volumeMounts:
-        - name: mongodb-persistent-storage
-          mountPath: /data/db
+        - name: mongodb
+          image: mongo:3.6.5-jessie
+          volumeMounts:
+            - name: mongo-persistent-storage
+              mountPath: "/data/db"
 
-      volume:
-      - name: mongodb-persistent-storage
+      volumes:
+        - name: mongo-persistent-storage
         # pointer to the configuration of How the mount is to be implemented
-        persistentVolumeClaim:
-          claimName: mongo-pvc
+          persistentVolumeClaim:
+            claimName: mongo-pvc
 
 ---
 # Mongodb Services
@@ -37,6 +37,6 @@ spec:
     app: mongodb
 
   ports:
-  - name: mongoport
-    port: 27017
+    - name: mongoport
+      port: 27017
   type: ClusterIP

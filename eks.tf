@@ -87,8 +87,8 @@ resource "aws_eks_node_group" "project_eks_node" {
 
   scaling_config {
     desired_size = 2
-    max_size     = 2
-    min_size     = 1
+    max_size     = 3
+    min_size     = 2
   }
   ami_type             = "AL2_x86_64"
   capacity_type        = "ON_DEMAND"

@@ -5,11 +5,11 @@ metadata:
   name: mongo-pvc
 spec:
   storageClassName: cloud-ssd
-  accessMode: 
-  - ReadWriteOnce
+  accessModes: 
+    - ReadWriteOnce
   resources:
     requests:
-      storage: 20Gi
+      storage: 10Gi
 
 ---
 # Storage - mongo-pvc (How do you want it implemented)
