@@ -21,10 +21,10 @@ pipeline {
                 script {
                     dir('fms-deployments') {
                         sh "aws eks update-kubeconfig --region us-east-1 --name project-eks --profile vscode"
-                        sh "kubectl apply -f workloads.yaml"
-                        sh "kubectl apply -f services.yaml"
                         sh "kubectl apply -f mongo-stack.yaml"
                         sh "kubectl apply -f storage.yaml"
+                        sh "kubectl apply -f workloads.yaml"
+                        sh "kubectl apply -f services.yaml"
                     }
                 }
             }

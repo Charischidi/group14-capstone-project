@@ -12,6 +12,6 @@
 #   value = aws_eks_cluster.project_eks.certificate_authority.0.data
 # }
 
-output "ebs_volume_id" {
- value = aws_ebs_volume.project_eks_ebs_volume.id
-}
+# output "ebs_volume_id" {
+#  value = aws_ebs_volume.project_eks_ebs_volume.id
+# }
