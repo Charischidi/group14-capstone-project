@@ -27,7 +27,7 @@ pipeline {
                         sh "kubectl apply -f services.yaml"
                         sh "kubectl apply -f ingress-controller.yaml"
                         sh "kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s"
-                        sh ""
+                        sh "kubectl apply -f ingress.yaml"
                     }
                 }
             }
