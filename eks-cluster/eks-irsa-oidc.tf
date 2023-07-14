@@ -1,13 +1,13 @@
-# # Create OpenId connect provider
-# data "tls_certificate" "project-eks-tls" {
-#   url = aws_eks_cluster.project_eks.identity[0].oidc[0].issuer
-# }
+# Create OpenId connect provider
+data "tls_certificate" "project-eks-tls" {
+  url = aws_eks_cluster.project_eks.identity[0].oidc[0].issuer
+}
 
-# resource "aws_iam_openid_connect_provider" "oidc_provider" {
-#   client_id_list  = ["sts.amazonaws.com"]
-#   thumbprint_list = [data.tls_certificate.project-eks-tls.certificates[0].sha1_fingerprint]
-#   url             = aws_eks_cluster.project_eks.identity[0].oidc[0].issuer
-# }
+resource "aws_iam_openid_connect_provider" "oidc_provider" {
+  client_id_list  = ["sts.amazonaws.com"]
+  thumbprint_list = [data.tls_certificate.project-eks-tls.certificates[0].sha1_fingerprint]
+  url             = aws_eks_cluster.project_eks.identity[0].oidc[0].issuer
+}
 
 
 # # Create IAM Policy, Roles with OIDC and Install EBS-CSI driver for AMAZON EBS 
