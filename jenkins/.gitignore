@@ -1,0 +1,6 @@
+/.terraform
+/terraform.tfvars
+/.terraform.lock.hcl
+/terraform.tfstate
+/terraform.tfstate.backup
+/jenkins-server-script.sh
