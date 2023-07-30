@@ -3,11 +3,13 @@ kind: Ingress
 metadata:
   name: ingress-project
   namespace: default
+  annotations:
+    cert-manager.io/cluster-issuer: letsencrypt-staging
 spec:
   ingressClassName: nginx
   rules:
 
-  - host: chichieo.live
+  - host: www.chichieo.live
     http:
       paths:
       - path: /
@@ -17,3 +19,7 @@ spec:
             name: fleetman-webapp
             port:
               number: 80
+
+  tls:
+    - hosts:
+        - www.chichieo.live

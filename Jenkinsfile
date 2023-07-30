@@ -28,9 +28,14 @@ pipeline {
         //                sh "kubectl apply -f ingress-nginx-controller.yaml"
         //                sh "kubectl wait --namespace ingress-nginx --for=condition=ready pod --selector=app.kubernetes.io/component=controller --timeout=120s"
         //                sh "kubectl apply -f ingress.yaml"
-                        sh "helm repo add ingress-nginx https://kubernetes.github.io/ingress-nginx"
+                        sh "helm repo add nginx-stable https://helm.nginx.com/stable"
                         sh "helm repo update"
-                        sh "helm install [RELEASE_NAME] ingress-nginx/ingress-nginx"
+                        sh "helm upgrade --install ingress-nginx ingress-nginx --repo https://kubernetes.github.io/ingress-nginx --namespace ingress-nginx --create-namespace"
+                        sh "helm repo add jetstack https://charts.jetstack.io"
+                        sh "helm repo update"
+                        sh "helm install cert-manager jetstack/cert-manager --namespace cert-manager --create-namespace --set installCRDs=true"
+                        sh "kubectl apply -f issuer.yaml"
+                        sh "kubectl apply -f ingress.yaml"
                     }
                 }
             }
